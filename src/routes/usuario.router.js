@@ -2,6 +2,8 @@ import express from "express";
 import UsuarioModel from "../models/usuario.model.js";
 const router = express.Router(); 
 import jwt from "jsonwebtoken";
+import passport
+ from "passport";
 
 
 router.post("/register", async (req, res) => {
@@ -38,6 +40,8 @@ router.post("/register", async (req, res) => {
         res.status(500).send("Error interno del servidor");
     }
 })
-
-
+//ruta para home
+router.get("/home", passport.authenticate("jwt", {session: false}), (req, res) => {
+    res.render("home", {usuario: req.user.usuario})
+})
 export default router;

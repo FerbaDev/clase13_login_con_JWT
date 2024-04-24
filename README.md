@@ -7,6 +7,9 @@ configurando handlebars ------------- 00:20
 router ------------------------------ 00:33
 ## rutas de usuario.router
 register ---------------------------- 00:40
+passport config --------------------- 01:08
+ruta para home ---------------------- 01:14
+
 
 
 
