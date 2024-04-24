@@ -2,6 +2,7 @@ import express from "express";
 import "./database.js";
 import exphbs from "express-handlebars";
 import viewsRouter from "./routes/views.router.js";
+import usuarioRouter from "./routes/usuario.router.js"
 
 const app = express();
 const PUERTO = 8080;
@@ -19,6 +20,7 @@ app.set("views", "./src/views");
 
 //rutas
 app.use("/", viewsRouter)
+app.use("/", usuarioRouter)
 
 //listen
 app.listen(PUERTO, () => {

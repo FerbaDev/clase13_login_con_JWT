@@ -1,6 +1,7 @@
 import express from "express"; 
-import UsuarioModel from "../models/usuario.model";
+import UsuarioModel from "../models/usuario.model.js";
 const router = express.Router(); 
+import jwt from "jsonwebtoken";
 
 
 router.post("/register", async (req, res) => {
@@ -8,7 +9,7 @@ router.post("/register", async (req, res) => {
     try {
         const existeUsuario = await UsuarioModel.findOne({usuario});
 
-        if (usuario) {
+        if (existeUsuario) {
             return res.status(400).send("El usuario ya existe")
         }
 
@@ -37,3 +38,6 @@ router.post("/register", async (req, res) => {
         res.status(500).send("Error interno del servidor");
     }
 })
+
+
+export default router;
