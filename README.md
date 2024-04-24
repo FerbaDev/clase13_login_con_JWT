@@ -5,6 +5,8 @@ database.js ------------------------- 00:14
 schema usuario mongoose ------------- 00:17
 configurando handlebars ------------- 00:20
 router ------------------------------ 00:33
+router de usuario.router ------------ 00:39
+
 
 
 
