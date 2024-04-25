@@ -40,6 +40,40 @@ router.post("/register", async (req, res) => {
         res.status(500).send("Error interno del servidor");
     }
 })
+
+//Login
+
+router.post("/login", async (req, res) => {
+    const {usuario, password} = req.body;
+
+    try {
+        const usuarioEncontrado = await UsuarioModel.findOne({usuario});
+        if (!usuarioEncontrado) {
+            return res.status(401).send("Usuario no valido.")
+        }
+        //verificamos el password
+        if (password !== usuarioEncontrado.password) {
+            return res.status(401).send("Contraseña incorrecta")
+        }
+        //Generamos el token
+        const token = jwt.sign({usuario: usuarioEncontrado.usuario, rol: usuarioEncontrado.role}, "coderhouse", {expiresIn: "1hr"});
+        // mandamos el cookie token
+        res.cookie("coderCookieToken", token, {maxAge: 360000, httpOnly: true});
+        //mandarlo al home
+        res.redirect("/home")
+    } catch (error) {
+        res.status(500).send("Error interno del servidor");
+    }
+})
+
+
+
+
+
+
+
+
+
 //ruta para home
 router.get("/home", passport.authenticate("jwt", {session: false}), (req, res) => {
     res.render("home", {usuario: req.user.usuario})
