@@ -66,9 +66,12 @@ router.post("/login", async (req, res) => {
     }
 })
 
+//logout
 
-
-
+router.post("/logout", (req, res) => {
+    res.clearCookie("coderCookieToken");
+    res.redirect("/login")
+})
 
 
 
