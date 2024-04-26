@@ -2,8 +2,7 @@ import express from "express";
 import UsuarioModel from "../models/usuario.model.js";
 const router = express.Router(); 
 import jwt from "jsonwebtoken";
-import passport
- from "passport";
+import passport from "passport";
 
 
 router.post("/register", async (req, res) => {
