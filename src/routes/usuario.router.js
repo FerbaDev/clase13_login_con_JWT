@@ -73,7 +73,13 @@ router.post("/logout", (req, res) => {
     res.redirect("/login")
 })
 
-
+//ruta admin
+router.get("/admin", passport.authenticate("jwt", {session: false}), (req, res) => {
+    if (req.user.rol !== "admin") {
+        return res.status(403).send(`acceso denegado su rol es  ${req.user.rol}`)
+    }
+    res.render("admin", {usuario: req.user.usuario})
+})
 
 
 
